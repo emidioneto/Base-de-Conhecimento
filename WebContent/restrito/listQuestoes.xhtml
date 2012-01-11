@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:define name="content">
+		<p:fieldset legend="Listar Questões">
+			<p:fieldset legend="Buscar Questões">
+				<h:panelGrid columns="2" id="grid">
+					<h:outputLabel value="Assunto :" />
+					<h:selectOneMenu id="selectAssunto" value="#{questaoBean.id_assunto}">
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaAssuntos}" />
+						<p:ajax update="selectQuestionario" listener="#{questaoBean.carregaComboQuestionario}" /> 
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Questionário :" />
+					<h:selectOneMenu id="selectQuestionario" value="#{questaoBean.id_questionario}" >
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaQuestionarios}" />
+					</h:selectOneMenu>
+					
+					<h:outputLabel value="Enunciado :" />
+					<p:inputText id="txt_enunciado" value="#{questaoBean.questaoBusca.enunciado}" />
+
+					<p:commandButton value="Buscar" action="#{questaoBean.buscar}" ajax="false" />
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:commandButton ajax="false" value="Nova Questão" action="#{questaoBean.novaQuestao}" />
+			
+			<p:dataTable var="questao"  value="#{questaoBean.questoes}" emptyMessage="Nenhum registro encontrado."
+			paginator="true" rows="5"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5">
+				<p:column style="text-align:center;">
+					<f:facet name="header">Enunciado</f:facet>
+					<h:outputText value="#{questao.enunciado}" />
+				</p:column>
+				<p:column style="text-align:center;">
+					<f:facet name="header">Editar</f:facet>
+       		<p:commandButton ajax="false" value="Editar" action="#{questaoBean.editar(questao)}"/>
+				</p:column>
+				<p:column style="text-align:center;">
+					<f:facet name="header">Excluir</f:facet>
+					<p:commandButton ajax="false" value="Excluir" action="#{questaoBean.excluir(questao)}"/>
+				</p:column>
+			</p:dataTable>	
+			
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

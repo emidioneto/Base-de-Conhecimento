@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="content">
+		<p:fieldset legend="Novo Assunto">
+			<h:panelGrid columns="2" id="grid">
+
+				<h:outputLabel value="Descrição* :" />
+				<p:inputText id="edit_txt_descricao"
+					value="#{assuntoBean.assunto.descricao}" />
+
+
+				<h:outputLabel value="Disciplina* :" />
+				<h:selectOneMenu id="selectDisciplina"
+					value="#{assuntoBean.id_disciplina}">
+					<f:selectItem itemValue="" itemLabel="Selecione..." />
+					<f:selectItems value="#{disciplinaBean.listaDisciplinas}" />
+				</h:selectOneMenu>
+			</h:panelGrid>
+
+			<p:commandButton ajax="false" value="Salvar"
+				action="#{assuntoBean.salvarAssunto}" />
+
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

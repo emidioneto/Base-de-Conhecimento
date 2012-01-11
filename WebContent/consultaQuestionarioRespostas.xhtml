@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templatePopup.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+	<ui:define name="content">	
+		<p:fieldset id="fieldsetQuestionario" legend="#{consultaQuestionarioBean.assunto.descricao} :: #{consultaQuestionarioBean.questionario.descricao}">
+			<h2><h:outputText value="#{consultaQuestionarioBean.resultado}"/></h2>
+			<c:forEach var="questao" items="#{consultaQuestionarioBean.questoes}">
+				<div>
+					<h3><h:outputText value="#{questao.key}"/> - <h:outputText value="#{questao.value.enunciado}"/></h3>
+					<h:panelGrid columns="2" id="grid">
+						<h:outputText value="Resposta do Usuário: " style="font-weight:bold" />
+						<h:outputText value="#{questao.value.alternativaCerta.descricao}" />
+					</h:panelGrid>
+				</div>
+			</c:forEach>			
+		</p:fieldset>
+		<div style="margin:3px;text-align:center">
+			<p:commandButton value="Tentar Novamente" action="/consultaQuestionario.xhtml" ajax="false" />
+			<p:commandButton value="Visualizar Gabarito" action="#{consultaQuestionarioBean.verificaRespostas}" ajax="false" 
+			onclick="modalGab.show();" type="button"/>
+		</div>
+		<p:dialog header="Gabarito" widgetVar="modalGab" showEffect="bounce" hideEffect="explode" >
+		<c:forEach var="questao" items="#{consultaQuestionarioBean.questoes}">
+			<h:outputText value="#{questao.key}"/> - <h:outputText value="#{questao.value.enunciado}"/><br />
+			
+			<h:outputText value="Resposta Correta: " style="font-weight:bold" />
+		
+		    <h:outputText value="#{consultaQuestionarioBean.retornaRespostaCorreta(questao.key)}" />
+		    <br />
+		</c:forEach>
+		</p:dialog>  
+	</ui:define>
+</ui:composition>

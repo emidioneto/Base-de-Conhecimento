@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="content">
+		<p:fieldset  legend="Novo Tópico">
+			<h:panelGrid columns="2" id="grid">
+
+				<h:outputLabel value="Descrição* :" />
+				<p:inputText id="edit_txt_descricao" value="#{topicoBean.topico.descricao}" />
+
+				<h:outputLabel value="Assunto* :" />
+				<h:selectOneMenu id="selectAssunto" value="#{topicoBean.id_assunto}">
+					<f:selectItem itemValue="" itemLabel="Selecione..." />
+					<f:selectItems value="#{topicoBean.listaAssuntos}" />
+				</h:selectOneMenu>
+
+				<h:outputLabel value="Arquivo* :" />
+				<p:fileUpload label="Abrir..." allowTypes="*.pdf" 
+					fileUploadListener="#{topicoBean.submitArquivo}"
+					mode="advanced" update="msgs" sizeLimit="10000000" id="idcomponent">
+					<p:message for="idcomponent" />
+				</p:fileUpload>
+			</h:panelGrid>
+
+			<p:commandButton ajax="false" value="Salvar"
+				action="#{topicoBean.salvarTopico}" />
+
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

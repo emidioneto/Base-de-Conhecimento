@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:define name="content">
+		<p:fieldset legend="Listar Assuntos" >
+
+			<p:fieldset legend="Buscar Assuntos">
+				<h:panelGrid columns="2" id="grid">
+					<h:outputLabel value="Nome :" />
+					<p:inputText id="txt_nome" value="#{assuntoBean.assunto.descricao}" />
+
+					<h:outputLabel value="Disciplina :" />					
+					<h:selectOneMenu id="selectDisciplina"
+						value="#{assuntoBean.id_disciplina}">
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{disciplinaBean.listaDisciplinas}" />
+					</h:selectOneMenu>
+
+					<p:commandButton value="Buscar" action="#{assuntoBean.buscar}" update="panel_grid_assuntos,grid_assuntos"/>
+				</h:panelGrid>
+			</p:fieldset>
+
+			<p:outputPanel id="panel_grid_assuntos">
+				<p:commandButton ajax="false" value="Novo Assunto"
+					action="#{assuntoBean.novoAssunto}"></p:commandButton>
+				<p:dataTable id="grid_assuntos" var="assunto" value="#{assuntoBean.assuntos}"
+				emptyMessage="Nenhum registro encontrado." 
+				paginator="true" rows="5"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5">
+					<p:column style="text-align:center;">
+						<f:facet name="header">  
+	                    	Nome 
+	            		</f:facet>
+						<h:outputText value="#{assunto.descricao}" />
+					</p:column>
+					<p:column style="text-align:center;">
+						<f:facet name="header">  
+	                    	Disciplina 
+	            		</f:facet>
+						<h:outputText value="#{assunto.disciplina}" />
+					</p:column>
+					<p:column style="text-align:center;">
+						<f:facet name="header">  
+	                    	Editar 
+	            		</f:facet>
+						<p:commandButton ajax="false" value="Editar" action="#{assuntoBean.editar(assunto.id)}"/>
+					</p:column>
+					<p:column style="text-align:center;">
+						<f:facet name="header">  
+	                    	Excluir 
+	            		</f:facet>
+						<p:commandButton ajax="false" value="Excluir" action="#{assuntoBean.excluir(assunto)}"/>
+					</p:column>
+				</p:dataTable>
+			</p:outputPanel>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

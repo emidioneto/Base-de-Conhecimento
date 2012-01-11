@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<b:beans xmlns="http://www.springframework.org/schema/security"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:b="http://www.springframework.org/schema/beans"
+        xsi:schemaLocation="http://www.springframework.org/schema/beans
+                            http://www.springframework.org/schema/beans/spring-beans.xsd
+                            http://www.springframework.org/schema/security
+                            http://www.springframework.org/schema/security/spring-security-3.0.xsd">
+	<http auto-config="true">
+		<intercept-url pattern="/template/templateAdministrativa.xhtml" access="ROLE_ADMIN" />
+		<intercept-url pattern="/restrito/**" access="ROLE_ADMIN" />
+		<form-login login-page="/login.xhtml" authentication-failure-url="/login.xhtml?erro=deuerro"/>
+	</http>
+	<authentication-manager>
+		<authentication-provider>
+			<user-service>
+				<user name="" password="" authorities="ROLE_ADMIN" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager>
+</b:beans>

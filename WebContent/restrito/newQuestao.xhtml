@@ -1,0 +1,34 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:define name="content">
+		<p:fieldset legend="Nova Questão">
+			<h:panelGrid columns="2" id="grid">
+					<h:outputLabel value="Assunto :" />
+					<h:selectOneMenu id="selectAssunto" value="#{questaoBean.id_assunto}">
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaAssuntos}" />
+						<p:ajax update="selectQuestionario" listener="#{questaoBean.carregaComboQuestionario}" /> 
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Questionário :" />
+					<h:selectOneMenu id="selectQuestionario" value="#{questaoBean.id_questionario}" >
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaQuestionarios}" />
+					</h:selectOneMenu>
+
+				<h:outputLabel value="Enunciado* :" />
+				<p:inputTextarea id="edit_txt_enunciado" value="#{questaoBean.questao.enunciado}" cols="80" rows="3" required="true" requiredMessage="Enunciado é um campo requerido" />
+				
+				<p:commandButton ajax="false" value="Salvar" action="#{questaoBean.incluirQuestao}"/>
+			</h:panelGrid>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

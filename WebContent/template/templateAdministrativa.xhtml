@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link
+		href="#{facesContext.externalContext.requestContextPath}/resources/css/styleAdmin.css"
+		rel="stylesheet" type="text/css" />
+	<title>base de conhecimento</title>
+</h:head>
+
+<h:body>
+	<h:form prependId="false">
+		<p:layout id="layoutPai">
+			<div id="topo">
+				<div id="fita"></div>
+				<h2>base de conhecimento</h2>
+				<a style="float: right !important;font-size: 16px;" href="#{request.contextPath}/j_spring_security_logout" >Logout</a>
+			</div>
+			
+			<p:layoutUnit position="left" width="245" minWidth="200"
+				maxWidth="245" id="UnitLeft">
+				<p:commandButton ajax="false"
+					action="#{administracaoBean.listDisciplinas}"
+					value="Listar Disciplinas" style="width:100%;" />
+				<p:commandButton ajax="false"
+					action="#{administracaoBean.listAssuntos}" value="Listar Assuntos"
+					style="width:100%;" />
+				<p:commandButton ajax="false"
+					action="#{administracaoBean.listTopicos}" value="Listar Tópicos"
+					style="width:100%;" />
+				<p:commandButton ajax="false"
+					action="#{administracaoBean.listQuestoes}" value="Listar Questões"
+					style="width:100%;" />
+				<p:commandButton ajax="false"
+					action="#{administracaoBean.listQuestionarios}"
+					value="Listar Questionários" style="width:100%;" />
+
+			</p:layoutUnit>
+
+			<p:layoutUnit position="center" style="overflow:auto;"
+				id="UnitCenter">
+				<p:growl id="msgs" />
+				<ui:insert name="content">Content</ui:insert>
+
+			</p:layoutUnit>
+		</p:layout>
+	</h:form>
+</h:body>
+
+</html>

@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+
+	<ui:define name="content">
+		<p:fieldset legend="Editar Questão">
+			<h:panelGrid columns="2" id="grid">
+					<h:outputLabel value="Assunto :" />
+					<h:selectOneMenu id="selectAssunto" value="#{questaoBean.id_assunto}">
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaAssuntos}" />
+						<p:ajax update="selectQuestionario" listener="#{questaoBean.carregaComboQuestionario}" /> 
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Questionário :" />
+					<h:selectOneMenu id="selectQuestionario" value="#{questaoBean.id_questionario}" >
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaQuestionarios}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Enunciado* :" />
+					<p:inputTextarea  style="width:500px;" id="edit_txt_enunciado" value="#{questaoBean.questao.enunciado}" cols="80" rows="3" required="true" requiredMessage="Enunciado é um campo requerido" />
+	
+					<h:outputLabel value="Alternativa Correta :" />
+					<h:selectOneMenu id="selectAlternativas" value="#{questaoBean.id_alternativa_certa}" style="max-width:400px;" >
+						<f:selectItem itemValue="" itemLabel="Selecione..." />
+						<f:selectItems value="#{questaoBean.listaAlternativas}" />
+					</h:selectOneMenu>
+				
+				<p:commandButton ajax="false" value="Salvar" action="#{questaoBean.incluirQuestao}"/>
+			</h:panelGrid>
+		</p:fieldset>
+		
+		<p:fieldset legend="Alternativas">
+			
+			<h:panelGrid columns="1">	
+				<p:dataTable var="alternativa" value="#{questaoBean.questao.alternativas}" emptyMessage="Nenhum registro encontrado.">
+					<p:column style="text-align:center;">
+						<f:facet name="header">Descrição</f:facet>
+						<p:inputTextarea style="width:500px;" value="#{alternativa.descricao}" cols="80"/>
+					</p:column>
+					<p:column style="text-align:center;">
+						<f:facet name="header">Excluir</f:facet>
+						<p:commandButton ajax="false" value="Excluir" action="#{questaoBean.removeAlternativa(alternativa)}"/>
+					</p:column>
+				</p:dataTable>
+			</h:panelGrid>
+			<p:commandButton ajax="false" value="Adicionar Alternativa" action="#{questaoBean.addAlternativa}"/>
+			<p:commandButton ajax="false" value="Salvar" action="#{questaoBean.salvarAlternativas}"/>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

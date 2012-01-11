@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets"
+	template="/template/templateAdministrativa.xhtml"
+	xmlns:p="http://primefaces.prime.com.tr/ui"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core">
+
+	<ui:define name="content">
+		<p:fieldset legend="Listar Disciplinas">
+			<p:commandButton ajax="false" value="Nova Disciplina"
+				action="#{disciplinaBean.novaDisciplina}"></p:commandButton>
+
+			<p:dataTable var="disciplina" value="#{disciplinaBean.disciplinas}"
+			emptyMessage="Nenhum registro encontrado."
+			paginator="true" rows="5"
+                 paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                 rowsPerPageTemplate="5">
+				<p:column style="text-align:center;">
+					<f:facet name="header">  
+                    	Nome 
+            		</f:facet>
+					<h:outputText value="#{disciplina.nome}" />
+					
+				</p:column>				
+				
+				<p:column style="text-align:center;">
+					<f:facet name="header">  
+                    	Editar 
+            		</f:facet>
+					<p:commandButton ajax="false" value="Editar" action="#{disciplinaBean.editar(disciplina)}"/>
+				</p:column>
+				
+				<p:column style="text-align:center;">
+					<f:facet name="header">  
+                    	Excluir
+            		</f:facet>
+					<p:commandButton ajax="false" value="Excluir" action="#{disciplinaBean.excluir(disciplina)}"/>
+				</p:column>
+			</p:dataTable>
+		</p:fieldset>
+	</ui:define>
+
+</ui:composition>

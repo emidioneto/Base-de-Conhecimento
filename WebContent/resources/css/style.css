@@ -1,0 +1,131 @@
+body {
+	font-size: 12px;
+	font-family: Arial, Helvetica, sans-serif;
+	color: #000000;
+	margin: 10px;
+	font-size: 12px;
+	background-image:url("bg.png") !important;
+	background-repeat:repeat-x;
+}
+
+h1 {
+	font-family: Arial, "Arial CE", "Lucida Grande CE", lucida,
+		"Helvetica CE", sans-serif;
+	border-bottom: 1px solid #AFAFAF;
+	font-size: 16px;
+	font-weight: bold;
+	margin: 0px;
+	padding: 0px;
+	color: #D20005;
+}
+
+a:link,a:visited {
+	color: #045491;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+a:link:hover,a:visited:hover {
+	color: #045491;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+#tudo {
+	background-color: #5783A8;
+	width: 1000px;
+	min-height: 520px;
+	height: 850px;
+	margin: 0 auto;
+	border: 0px solid #5681A0 !important;
+}
+
+#topo {
+	font-size: 45px;
+	text-align: center;
+	color: #074276;	
+}
+
+#menu {
+	background-color: blue;
+	width: 300px;
+	float: left;
+}
+
+#conteudo {
+	background-color: green;
+	width: 1024px;
+}
+
+#rodape {
+	background-color: purple;
+	width: 1024px;
+}
+
+.ui-widget-content {
+	background: none !important;
+	
+}
+
+fieldset {
+	border: 1px solid #5681A0 !important;
+}
+
+.tabAssuntos {
+	border: 1px solid #EEEEEE !important;
+}
+
+#menu-left {
+	background-color: none;
+	height: 710px !important;
+	width: 241px;
+	overflow-y:auto;
+	overflow-x: hidden;
+}
+
+#tabAssunto_acco div {
+	border: 1px solid #EEEEEE !important;
+	background:#fff !important;
+}
+#tabAssunto_acco h3{
+	background:url("/BaseConhecimento/javax.faces.resource/images/ui-bg_highlight-hard_100_eeeeee_1x100.png.xhtml?ln=primefaces-blitzer") repeat-x scroll 50% 50% #EEEEEE !important;
+}
+tr ,th{
+	border: 1px solid #5681A0 !important;
+}
+#fieldsetLeitura{
+	height: 690px;
+}
+
+.ui-layout .yui-resize .yui-resize-handle{
+	background-color: #E0DDD0 !important;
+	height: 690px !important;
+}
+
+div#layoutPai {
+	overflow: auto;
+	border: 0 !important;
+}
+
+.ui-layout .ui-layout-unit div.ui-layout-bd{
+	border: 0 !important;
+}
+
+div#fita{
+	width:196px;
+	height:225px;
+	background:url("fita.png") !important;
+	float: left;
+	margin-top: -57px;
+}
+
+.ui-growl-item-container{
+	background-color: #D85454 !important;
+}
+.ui-dialog .ui-dialog-content{
+	background-color: #FFF !important;
+}
+
+.tituloEquipe{
+	font-weight: bold;
+}
